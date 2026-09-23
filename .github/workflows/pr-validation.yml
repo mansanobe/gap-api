@@ -46,9 +46,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: >
           ./gradlew check sonar
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
           -Dsonar.projectName=${{ vars.SONAR_PROJECT_NAME }}
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION_KEY }}
+          -Dsonar.organization=${{ vars.SONAR_ORGANIZATION_KEY }}
           -Dsonar.host.url=${{ vars.SONAR_HOST_URL }}
           -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
           -Dsonar.qualitygate.wait=true
