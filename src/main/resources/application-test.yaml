@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: gap-api
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/core_api_test
+    username: testuser
+    password: testpassword
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

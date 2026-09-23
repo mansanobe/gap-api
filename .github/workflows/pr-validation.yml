@@ -26,19 +26,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Necessário para o SonarCloud calcular o New Code corretamente
 
       - name: Setup JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: 'gradle'
 
       - name: Restore vulnerability database cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.gradle/dependency-check-data
           key: dependency-check-${{ runner.os }}-${{ hashFiles('**/gradle-wrapper.properties') }}
@@ -61,6 +61,7 @@ jobs:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/core_api_test
           SPRING_DATASOURCE_USERNAME: testuser
           SPRING_DATASOURCE_PASSWORD: testpassword
+          SPRING_PROFILES_ACTIVE: test
         run: >
           ./gradlew check sonar
           -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
@@ -77,7 +78,7 @@ jobs:
           files: '**/build/test-results/test/TEST-*.xml'
 
       - name: Publish JaCoCo coverage (Artifact)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: jacoco-report
