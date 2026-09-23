@@ -1,7 +1,3 @@
 spring:
-  application:
-    name: gap-api
-
-server:
-  servlet:
-    context-path: /api
+  profiles:
+    active: dev

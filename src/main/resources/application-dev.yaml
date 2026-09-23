@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: gap-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gap
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+server:
+  servlet:
+    context-path: /api
+
+
