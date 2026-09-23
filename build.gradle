@@ -47,3 +47,10 @@ jacocoTestReport {
 }
 
 test.finalizedBy jacocoTestReport
+
+sonar {
+	properties {
+		property "sonar.projectKey", "mansanobe_gap-api"
+		property "sonar.organization", "mansanobe-1"
+	}
+}
