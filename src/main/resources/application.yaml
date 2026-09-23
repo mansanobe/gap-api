@@ -1,6 +1,6 @@
 spring:
   application:
-    name: api
+    name: gap-api
 server:
   servlet:
     context-path: /api
