@@ -10,6 +10,11 @@ jobs:
   build-and-analyze:
     runs-on: ubuntu-latest
 
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: read
+
     services:
       postgres:
         image: postgres:latest
