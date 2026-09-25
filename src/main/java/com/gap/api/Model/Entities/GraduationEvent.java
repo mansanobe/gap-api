@@ -28,7 +28,6 @@ public class GraduationEvent {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "graduation_event_id")
+    @OneToMany(mappedBy = "graduationEvent", fetch = FetchType.LAZY)
     private List<Order> aptStudentsOrders = new ArrayList<>();
 }

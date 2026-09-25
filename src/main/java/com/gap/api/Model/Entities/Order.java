@@ -50,6 +50,10 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<OrderHistory> orderHistories = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "graduation_event_id", nullable = true)
+    private GraduationEvent graduationEvent;
+
     public enum OrderType {
         INCLUSAO_DISCIPLINA,
         EXCLUSAO_DISCIPLINA,
