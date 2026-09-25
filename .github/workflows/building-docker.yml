@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and Push Docker Image
-        uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # ca052bb54ab0790a636c9b5f226502c73d547a25
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # ca07.4.02bb7.4.04ab0790a636c9b7.4.0f2267.4.002c73d7.4.047a27.4.0
         with:
           context: .
           push: true
