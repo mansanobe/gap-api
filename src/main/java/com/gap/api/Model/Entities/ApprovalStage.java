@@ -1,0 +1,60 @@
+package com.gap.api.Model.Entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Immutable;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.time.ZonedDateTime;
+
+@Data
+@Entity
+@Immutable
+@Table(name="approval_stages")
+public class ApprovalStage {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, unique = true)
+    private long id;
+
+    @Column(name = "name", nullable = false, unique = true)
+    private ApprovalStageType type;
+
+    @Column(name = "status", nullable = false)
+    private ApprovalStageStatus status;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false, nullable = false)
+    private ZonedDateTime createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Order order;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
+    private User whoApproved;
+
+    @ManyToOne
+    @JoinColumn(name = "org_unit_id")
+    private OrgUnit responsibleUnit;
+
+
+
+    public enum ApprovalStageType {
+        COORDINATOR,
+        DIRECTOR,
+        SECRETARY
+    }
+
+    public enum ApprovalStageStatus {
+        PENDING,
+        APPROVED,
+        REJECTED
+    }
+
+}
