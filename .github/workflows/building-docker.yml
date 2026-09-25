@@ -45,5 +45,5 @@ jobs:
         env:
           DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK }}
         run: |
-          curl -X POST ${{RENDER_DEPLOY_HOOK}}
+          curl -X POST $DEPLOY_HOOK_URL
 
