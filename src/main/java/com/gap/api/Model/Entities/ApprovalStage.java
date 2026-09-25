@@ -1,7 +1,7 @@
 package com.gap.api.Model.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.OnDelete;
@@ -9,22 +9,29 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.ZonedDateTime;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Immutable
 @Table(name="approval_stages")
 public class ApprovalStage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
-    private long id;
+    private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "name", nullable = false)
     private ApprovalStageType type;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private ApprovalStageStatus status;
+
+    @Column(name = "step_order", nullable = false)
+    private int stepOrder;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false, nullable = false)
@@ -35,8 +42,8 @@ public class ApprovalStage {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User whoApproved;
 
     @ManyToOne

@@ -1,11 +1,14 @@
 package com.gap.api.Model.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -19,7 +22,7 @@ public class Role implements GrantedAuthority {
     private String authority;
 
     @Override
-    public @Nullable String getAuthority() {
-        return "";
+    public String getAuthority() {
+        return this.authority;
     }
 }

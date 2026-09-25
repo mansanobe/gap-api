@@ -1,11 +1,14 @@
 package com.gap.api.Model.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "org_units")
 public class OrgUnit {
@@ -19,6 +22,9 @@ public class OrgUnit {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrgUnitType type;
+
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @OneToMany(mappedBy = "responsibleUnit", fetch = FetchType.LAZY)
     private List<ApprovalStage> approvalStages;

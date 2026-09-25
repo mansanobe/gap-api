@@ -1,17 +1,20 @@
 package com.gap.api.Model.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name="annex")
+@Table(name="annexes")
 public class Annex {
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
@@ -23,5 +26,7 @@ public class Annex {
     @Column(name="name", nullable = false)
     private String name;
 
+    @Column(name="content_type")
+    private String contentType;
 
 }

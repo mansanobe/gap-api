@@ -1,36 +1,38 @@
 package com.gap.api.Model.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Immutable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Immutable
 @Table(name="courses")
 public class Course {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private long id;
+    private Long id;
 
     @Column(name="name", nullable = false, unique = true)
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "director_id", referencedColumnName = "id", unique = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "director_id", referencedColumnName = "id")
     private User director;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "coordinator_id", referencedColumnName = "id", unique = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coordinator_id", referencedColumnName = "id")
     private User coordinator;
 
-    @OneToOne(fetch =  FetchType.LAZY)
-    @JoinColumn(name = "secretary_id", referencedColumnName = "id", unique = true)
+    @ManyToOne(fetch =  FetchType.LAZY)
+    @JoinColumn(name = "secretary_id", referencedColumnName = "id")
     private User secretary;
 
      /**

@@ -1,14 +1,17 @@
 package com.gap.api.Model.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.*;
 import org.hibernate.type.SqlTypes;
 
 import java.time.ZonedDateTime;
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Immutable
 @Table(name = "order_histories")
@@ -17,7 +20,7 @@ public class OrderHistory {
     @Id
     @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
@@ -31,7 +34,7 @@ public class OrderHistory {
     @Column(name = "event_type", nullable = false, length = 50)
     private String eventType;
 
-    @Column(columnDefinition = "description", nullable = false)
+    @Column(name = "description", columnDefinition = "TEXT", nullable = false)
     private String description;
 
     @CreationTimestamp

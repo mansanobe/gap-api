@@ -1,7 +1,7 @@
 package com.gap.api.Model.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="orders")
 public class Order {
@@ -19,7 +22,7 @@ public class Order {
     @Id
     @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -55,13 +58,13 @@ public class Order {
         INTEGRALIZACAO_E_COLACAO_DE_GRAU,
         ATUALIZACAO_CADASTRAL,
         DECLARACAO_DE_MATRICULA,
-        DECLADACAO_DE_CONTAGEM_DE_CREDITOS,
+        DECLARACAO_DE_CONTAGEM_DE_CREDITOS,
         EMISSAO_DE_HISTORICO_ESCOLAR,
         EMISSAO_DE_PROGRAMAS_DE_DISCIPLINAS,
         REGIME_EXCEPCIONAL_DE_APRENDIZAGEM,
         MIGRACAO_CURRICULAR,
         PRORROGACAO_PRAZO_INTEGRALIZACAO,
-        CANCELMANETO_MATRICULA,
+        CANCELAMENTO_MATRICULA,
         TRANCAMENTO_DE_MATRICULA
     }
 
